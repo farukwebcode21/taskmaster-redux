@@ -1,18 +1,18 @@
+import { useDispatch } from "react-redux";
 import Modal from "../ui/Modal";
 import { useForm } from "react-hook-form";
+import { addTask } from "../../redux/features/tasks/tasksSlice";
 
 const AddTaskModal = ({ isOpen, setIsOpen }) => {
-  const { register, reset } = useForm();
-  const onSubmit = (title, description, date, priority, assingedTo) =>
-    console.log(title, description, date, assingedTo, priority);
+  const { register, handleSubmit, reset } = useForm();
+  const dispatch = useDispatch();
 
   const handleCancel = () => {
     reset();
     setIsOpen(false);
   };
-
-  const handleSubmit = (data) => {
-    console.log(data);
+  const onSubmit = (data) => {
+    dispatch(addTask(data));
     handleCancel();
   };
 
@@ -45,14 +45,14 @@ const AddTaskModal = ({ isOpen, setIsOpen }) => {
           <select id="assingedTo" {...register("assingedTo")}>
             <option value={"Faruk Ahmad"}>Faruk Ahamd</option>
             <option value={"Rashel Ahmad"}>Rashel Ahamd</option>
-            <option value={"Mir Hussain"}>Mir Hussain</option>
-            <option value={"Mezba Abedin"}>Mezba Abedin</option>
-            <option value={"Mizanur Rahmad"}>Mizanur Rahmand</option>
-            <option value={"Tanmoy Parvez"}>Tanmoy Parvez</option>
-            <option value={"Fahim Ahmed Firoz"}>Fahim Ahmed Firoz</option>
-            <option value={"Rahatul Islam"}>Rahatul Islam</option>
-            <option value={"Samin Israr Ravi"}>Samin Israrr Ravi</option>
-            <option value={"Mehedi Anik"}>Mehedi Anik</option>
+            <option value={"Mir Hussain"}>Mir Shanto</option>
+            <option value={"Mezba Abedin"}>Mozibur Hossain</option>
+            <option value={"Mizanur Rahmad"}>Mizan Ali</option>
+            <option value={"Tanmoy Parvez"}> Parvez Hasan</option>
+            <option value={"Fahim Ahmed Firoz"}>Faruk Ahmed Rupon</option>
+            <option value={"Rahatul Islam"}>Robiul Islam</option>
+            <option value={"Samin Israr Ravi"}>Kallyan</option>
+            <option value={"Mehedi Anik"}>Rostom Hossain</option>
           </select>
           <label htmlFor="title">Priority</label>
           <select id="priority" {...register("priority")}>
