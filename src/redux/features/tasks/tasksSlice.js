@@ -1,7 +1,18 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  tasks: [],
+  tasks: [
+    {
+      id: 1,
+      status: "pending",
+      title: "Remove Button",
+      description:
+        "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Expedita dolor aliquam neque,",
+      date: "11-10-2024",
+      assingedTo: "Faruk Ahmad",
+      priority: "High",
+    },
+  ],
 };
 
 const tasksSlice = createSlice({
