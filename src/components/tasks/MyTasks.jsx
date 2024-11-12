@@ -13,7 +13,13 @@ const MyTasks = () => {
   const { tasks, userSpecificTasks } = useSelector((state) => state.tasksSlice);
   const { name: userName } = useSelector((state) => state.userSlice);
   const [isOpen, setIsOpen] = useState(false);
+  const [taskId, setTaskId] = useState(0);
   const dispatch = useDispatch();
+
+  const handleModal = (id) => {
+    setTaskId(id);
+    setIsOpen(!isOpen);
+  };
 
   useEffect(() => {
     dispatch(userTasks(userName));
@@ -21,7 +27,7 @@ const MyTasks = () => {
 
   return (
     <div>
-      <TasksDetailsModal isOpen={isOpen} setIsOpen={setIsOpen} />
+      <TasksDetailsModal isOpen={isOpen} setIsOpen={setIsOpen} id={taskId} />
       <h1 className="text-xl my-3">My Tasks</h1>
       <div className=" h-[750px] overflow-auto space-y-3">
         {userSpecificTasks?.map((item) => (
@@ -32,7 +38,7 @@ const MyTasks = () => {
             <h1>{item.title}</h1>
             <div className="flex gap-3">
               <button
-                onClick={() => setIsOpen(!isOpen)}
+                onClick={() => handleModal(item.id)}
                 className="grid place-content-center"
                 title="Details"
               >
